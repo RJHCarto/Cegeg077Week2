@@ -23,7 +23,6 @@
 		<div id="mapid" style="width: 600px; height: 400px;"></div>
 		<!-- the following script will load the map and set the default view and zoom, as well as loading the basemap tiles -->
 		<script>
-		var testMarkerPink = L.AwesomeMarkers.icon({icon: 'play', markerColor: 'pink'});
 		// load the map
 		var mymap = L.map('mapid').setView([51.505, -0.09], 13);
 		// load the tiles
@@ -31,9 +30,14 @@
 				'<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>,' 
 			+ 
 				'Imagery © <a href="http://mapbox.com">Mapbox</a>', id: 'mapbox.streets'
-		L.geoJSON(geojsonFeature, {pointToLayer: function (feature, latlng) { return L.marker(latlng, {icon:testMarkerPink});
-	}
-	}).addTo(mymap).bindPopup("<b>"+geojsonFeature.properties.name+""+geojsonFeature.properties.popupContent+"<b>");
+		var testMarkerPink = L.AwesomeMarkers.icon({
+			icon: 'play',
+			markerColor: 'pink'});
+		L.geoJSON(geojsonFeature, {
+			pointToLayer: function (feature, latlng) {
+				return L.marker(latlng, {icon:testMarkerPink});
+			}
+		}).addTo(mymap).bindPopup("<b>"+geojsonFeature.properties.name+""+geojsonFeature.properties.popupContent+"<b>");
 		// create a custom popup
 		var popup = L.popup();
 		// create an event detector to wait for the user's click event and then use the popup to show them where they clicked
